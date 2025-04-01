@@ -8,7 +8,7 @@ currSheet = importedWorkbook.active
 createWorkbook = Workbook()
 
 newSheets = []
-for row in currSheet.iter_rows(min_row= 1, max_row= 10, min_col= 1, max_col= 1) :
+for row in currSheet.iter_rows(min_row= 1, max_row= 181, min_col= 1, max_col= 1) :
     for cell in row :
         if cell.value not in newSheets :
             createWorkbook.create_sheet(f"{cell.value}")
@@ -16,3 +16,6 @@ for row in currSheet.iter_rows(min_row= 1, max_row= 10, min_col= 1, max_col= 1) 
         else:
             pass
 
+createWorkbook.save(filename="organizedData.xlsx")
+
+createWorkbook.close()
