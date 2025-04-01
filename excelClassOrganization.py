@@ -8,7 +8,7 @@ currSheet = importedWorkbook.active
 createWorkbook = Workbook()
 
 newSheets = []
-for row in currSheet.iter_rows(min_row= 1, max_row= 181, min_col= 1, max_col= 1) :
+for row in currSheet.iter_rows(min_row= 2, min_col= 1, max_col= 1) :
     for cell in row :
         if cell.value not in newSheets :
             createWorkbook.create_sheet(f"{cell.value}")
