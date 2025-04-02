@@ -12,11 +12,19 @@ currSheet = importedWorkbook.active
 createWorkbook = Workbook()
 
 
+# Define the header
+header = ["Last Name", "First Name", "Student ID", "Grade"]
+
+
 for row in currSheet.iter_rows(min_row= 2, min_col= 1, max_col= 1) :
     for cell in row :
         if cell.value not in createWorkbook.sheetnames :
             createWorkbook.create_sheet(f"{cell.value}")
 createWorkbook.remove(createWorkbook["Sheet"])
+
+# add the header to each sheet
+for sheet in createWorkbook.sheetnames:
+    createWorkbook[sheet].append(header)
 
 # Creates list of student data from unorganized sheet
 studentList = []
@@ -30,7 +38,14 @@ for student in studentList:
     student_info.append(student[2])
     currSheet.append(student_info)
 
+for sheet_name in createWorkbook.sheetnames:
+    sheet = createWorkbook[sheet_name]
+    
+    # Find the last row dynamically
+    last_row = sheet.max_row  
 
+    # Apply filter
+    sheet.auto_filter.ref = f"A1:{"D"}{last_row}"
 
 createWorkbook.save(filename="formatted_grades.xlsx")
 createWorkbook.close()
