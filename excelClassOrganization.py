@@ -16,8 +16,6 @@ for row in currSheet.iter_rows(min_row= 2, min_col= 1, max_col= 1) :
     for cell in row :
         if cell.value not in createWorkbook.sheetnames :
             createWorkbook.create_sheet(f"{cell.value}")
-        else:
-            pass
 createWorkbook.remove(createWorkbook["Sheet"])
 
 # Creates list of student data from unorganized sheet
@@ -25,7 +23,7 @@ studentList = []
 for row in currSheet.iter_rows(min_row=2, values_only=True):
     studentList.append(row)
 
-# Iterates through student list and adds there data to the corresponding sheet
+# Iterates through student list and adds their data to the corresponding sheet
 for student in studentList:
     currSheet = createWorkbook[student[0]]
     student_info = student[1].split("_")
