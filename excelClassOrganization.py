@@ -13,9 +13,21 @@ for row in currSheet.iter_rows(min_row= 2, min_col= 1, max_col= 1) :
         if cell.value not in newSheets :
             createWorkbook.create_sheet(f"{cell.value}")
             newSheets.append(cell.value)
-        else:
-            pass
 
-createWorkbook.save(filename="organizedData.xlsx")
+
+
+studentList = []
+for row in currSheet.iter_rows(min_row=2, values_only=True):
+    studentList.append(row)
+
+for student in studentList:
+    currSheet = createWorkbook[student[0]]
+    student_info = student[1].split("_")
+    student_info.append(student[2])
+    currSheet.append(student_info)
+
+
+
 
 createWorkbook.close()
+createWorkbook.save(filename="organizedData.xlsx")
