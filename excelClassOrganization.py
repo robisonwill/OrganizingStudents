@@ -55,6 +55,8 @@ for sheet in createWorkbook.sheetnames :
             cell.font = Font(bold = True)
             createWorkbook[sheet].column_dimensions[get_column_letter(cell.column)].width = len(str(cell.value)) + 5
 
+            currentSheet.column_dimensions['F'].width = 22.17
+
 # Creates list of student data from unorganized sheet
 studentList = []
 for row in currSheet.iter_rows(min_row=2, values_only=True) :
