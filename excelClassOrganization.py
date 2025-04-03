@@ -10,9 +10,11 @@ from openpyxl.utils import get_column_letter
 
 # Function to create summary
 def summaryInfo(ws) :
+
     ws["F1"] = "Summary Statistics"
 
     ws["G1"] = "Value"
+
 
     ws["F2"] = "Highest Grade"
     ws["G2"] = "=MAX(D:D)"
@@ -44,7 +46,11 @@ for row in currSheet.iter_rows(min_row = 2, min_col = 1, max_col = 1) :
 createWorkbook.remove(createWorkbook["Sheet"])
 
 # Add header to each class sheet
+
+header = ["Last Name", "First Name", "Student ID", "Grade","","Summary Statistics","Value"]
+
 header = ["Last Name", "First Name", "Student ID", "Grade"]
+
 for sheet in createWorkbook.sheetnames :
     currentSheet = createWorkbook[sheet]
     currentSheet.append(header)
@@ -56,6 +62,7 @@ for sheet in createWorkbook.sheetnames :
             createWorkbook[sheet].column_dimensions[get_column_letter(cell.column)].width = len(str(cell.value)) + 5
 
             currentSheet.column_dimensions['F'].width = 22.17
+
 
 # Creates list of student data from unorganized sheet
 studentList = []
